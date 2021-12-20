@@ -1,0 +1,84 @@
+<template>
+  <el-card class="collapseContainer">
+    <!-- <div class=""></div> -->
+    <el-row :gutter="10">
+      <el-col :span="12" v-for="(item, index) in data" :key="index">
+        <div class="collapse_item" draggable @dragstart="dragstart($event, item)" @dragend="dragend">
+          {{ item.name }}
+        </div>
+      </el-col>
+    </el-row>
+  </el-card>
+</template>
+
+<script>
+import MInput from "./itemData/input";
+import MSelect from "./itemData/select";
+import MCheckbox from "./itemData/checkbox.js";
+import MTableForm from './itemData/tableForm'
+export default {
+  data() {
+    return {
+      data: [
+        { type: "input", name: "文本框" },
+        { type: "Select", name: "下拉框" },
+        { type: "Checkbox", name: "多选" },
+        { type: "TableForm", name: "表格" }
+      ]
+    };
+  },
+  methods: {
+    dragstart(e, data) {
+      this.$emit('setdrag', {type: 'drag1', value: '2'})
+      let obj = this.getobj(data.type)
+      console.log('obj---', obj)
+      this.$emit('setcom', obj)
+      e.dataTransfer.setData('formdata', JSON.stringify(obj))
+
+    },
+    dragend() {
+      // console.log('left dragend---', 'dragend')
+      this.$emit('reset')
+    },
+    getobj(type) {
+      // console.log('t-', new MInput())
+      let obj = {}
+      if (type === 'input') {
+        obj = new MInput()
+      } else if (type === 'Select') {
+        obj = new MSelect()
+      } else if (type === 'Checkbox') {
+        obj = new MCheckbox()
+      } else if (type === 'TableForm') {
+        obj = new MTableForm()
+      }
+      return obj
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.collapseContainer {
+  position: relative;
+  min-height: 700px;
+}
+.collapse_item {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  cursor: move;
+  font-size: 14px;
+  background: #f1f2fd;
+  &:hover {
+    border: 1px dashed #579ff8;
+    color: #579ff8;
+    transition: 0.3s;
+  }
+}
+</style>
