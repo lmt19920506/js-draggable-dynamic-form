@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-input v-model="forms[element.key]" v-if="element.type === 'Input'"></el-input>
-    <el-select v-model="forms[element.key]" v-if="element.type === 'Select'">
+    <el-input v-model="forms[element.model]" v-if="element.type === 'Input'"></el-input>
+    <el-select v-model="forms[element.model]" v-if="element.type === 'Select'">
       <el-option v-for="(item, index) in element.option" :key="index" :label="item.label" :value="item.value"></el-option>
     </el-select>
   </div>

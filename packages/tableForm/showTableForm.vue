@@ -60,11 +60,21 @@ export default {
       })
     },
     addTableData() {
-      this.dynamicValidateForm.domains.push(this.tableColumnData)
+      const tableColumnData = {}
+      this.data.column.forEach(item => {
+        if((item.type === 'CheckBox') || (item.type === 'Select' && item.multiple)) {
+          item.default = []
+        }
+        tableColumnData[item.model] = item.defaultValue
+      })
+      this.dynamicValidateForm.domains.push({
+        ...tableColumnData,
+        key: Date.now()
+      })
     }
   },
   mounted() {
-    this.init()
+    // this.init()
   }
 };
 </script>
