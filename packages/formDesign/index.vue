@@ -15,12 +15,14 @@
           @jiaohuan="jiaohuan"
           @deleCom="deleCom"
           @selectCom="setcom"
+          @previewView="previewView"
         />
       </el-col>
       <el-col :span="6">
         <rightConfig :form="formItemData" />
       </el-col>
     </el-row>
+    <previewModel ref="previewModel" :data="data" />
   </div>
 </template>
 
@@ -28,12 +30,14 @@
 import collapseItem from "../collapseItem/index";
 import centerForm from "../centerForm/index";
 import rightConfig from '../rightConfig/rightConfig'
+import previewModel from '../showForm/previewModel'
 export default {
   name: "FormDesign",
   components: {
     collapseItem,
     centerForm,
-    rightConfig
+    rightConfig,
+    previewModel
   },
   data() {
     return {
@@ -94,6 +98,9 @@ export default {
     },
     deleCom(index) {
       this.data.splice(index, 1)
+    },
+    previewView() {
+      this.$refs.previewModel.isShowPreviewModel = true
     }
   },
 };

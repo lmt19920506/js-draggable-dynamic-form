@@ -12,6 +12,7 @@
       <el-button
         style="float: right; padding: 3px 0; margin-left: 5px"
         type="text"
+        @click="previewView"
         >预览</el-button
       >
       <el-button
@@ -176,6 +177,9 @@ export default {
     setdrag3(data) {
       this.drag3 = data;
     },
+    previewView() {
+      this.$emit('previewView')
+    }
   },
   watch: {
     formItemData(newVal) {

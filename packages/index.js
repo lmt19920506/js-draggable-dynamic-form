@@ -1,7 +1,9 @@
 import FormDesign from './formDesign/index.vue'
+import FormView from './showForm/formView.vue'
+import FormItem from './formItem/index.vue'
 
 // 以数组得结构保存组件，便于遍历
-const components = [FormDesign]
+const components = [FormDesign, FormView, FormItem]
 
 // 定义install方法
 const install = function(Vue) {

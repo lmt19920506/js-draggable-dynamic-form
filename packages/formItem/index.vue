@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'FormItem',
   props: {
     element: {
       type: Object,
