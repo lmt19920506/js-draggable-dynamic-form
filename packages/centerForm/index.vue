@@ -217,7 +217,7 @@ export default {
   cursor: move;
   &:hover {
     border: 1px dashed pink;
-    // cursor: move;
+    transition: 0.5s
   }
 }
 </style>
