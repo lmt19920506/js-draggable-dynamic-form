@@ -1,5 +1,5 @@
 import assembly from './assembly'
-
+let num = 0
 export default class MCheckbox extends assembly{
   constructor(
     type = "Checkbox",
@@ -27,16 +27,16 @@ export default class MCheckbox extends assembly{
     // 下拉框的选项
     this.option = [{
       value: 'Beijing',
-      label: '北京'
+      label: 'checkbox_01'
     }, {
-      value: 'Shanghai',
-      label: '上海'
+      value: 'checkbox_02',
+      label: '多选2'
     }, {
-      value: 'Tianjin',
-      label: '天津'
+      value: 'checkbox_03',
+      label: '多选3'
     }, {
-      value: 'ChongQing',
-      label: '重庆'
+      value: 'checkbox_04',
+      label: '多选4'
     }]
     // 校验
     this.rules = [
@@ -45,7 +45,8 @@ export default class MCheckbox extends assembly{
   }
 
   addOption() {
-    this.option.push({label: '新选项', value: 'newVal'})
+    num++
+    this.option.push({label: `新选项_${num}`, value: `newVal_${num}`})
   }
 
   deleteOption(index) {

@@ -1,11 +1,12 @@
 import assembly from './assembly'
 
+let num = 0
 export default class MSelect extends assembly{
   constructor(
     name = "下拉",
     type = "Select",
     model = "Select_model_" + new Date().getTime(),
-    defaultValue = 'Shanghai',
+    defaultValue = 'two',
     col = 24,
     key = "Select" + '_' + new Date().getTime()
   ) {
@@ -26,17 +27,17 @@ export default class MSelect extends assembly{
     this.url = ''
     // 下拉框的选项
     this.option = [{
-      value: 'Beijing',
-      label: '北京'
+      value: 'one',
+      label: '下拉1'
     }, {
-      value: 'Shanghai',
-      label: '上海'
+      value: 'two',
+      label: '下拉2'
     }, {
-      value: 'Tianjin',
-      label: '天津'
+      value: 'three',
+      label: '下拉3'
     }, {
-      value: 'ChongQing',
-      label: '重庆'
+      value: 'four',
+      label: '下拉4'
     }]
     // 校验
     this.rules = [
@@ -48,6 +49,7 @@ export default class MSelect extends assembly{
     this.option.splice(index, 1)
   }
   addOption () {
-    this.option.push({label: '新的选择', value: 'newValue'})
+    num++
+    this.option.push({label: `新的选择_${num}`, value: `newValue_${num}`})
   }
 }

@@ -38,7 +38,7 @@
                 <i class="el-icon-delete icons" @click.stop="del(item)"></i>
               </div>
             </template>
-            <template scope="scope">
+            <template slot-scope="scope">
               <div>
                 <el-form-item
                   :key="scope.$index"
@@ -178,8 +178,7 @@ export default {
       }
     },
     set (data) {
-      // this.$emit('clickitem', data)
-      console.log('set---',data)
+      this.$emit('setTableHeadItem', data)
     },
     del (data) {
       this.data.deleColumn(data.id)
@@ -203,7 +202,7 @@ export default {
 .cont{
   position: relative;
   width: 100%;
-  height: 117px;
+  /* height: 117px; */
   /* background: blue; */
 }
 .contdiv{

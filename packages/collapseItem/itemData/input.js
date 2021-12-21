@@ -5,7 +5,7 @@ export default class MInput extends assembly {
     type = 'Input',
     name = "文本框",
     model = 'Input_model' + '_' + new Date().getTime(),
-    defaultValue = '123',
+    defaultValue = '',
     col = 24,
     key = 'Input' + '_' + new Date().getTime()
   ) {

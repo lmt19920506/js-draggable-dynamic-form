@@ -8,6 +8,7 @@
         <centerForm
           :formData="data"
           :formItemData="formItemData"
+          :formSets="formSets"
           :drag1="drag1"
           :drag2="drag2"
           @setdrag="setdrag"
@@ -16,10 +17,11 @@
           @deleCom="deleCom"
           @selectCom="setcom"
           @previewView="previewView"
+          @setTableHeadItem="setTableHeadItem"
         />
       </el-col>
       <el-col :span="6">
-        <rightConfig :form="formItemData" />
+        <rightConfig :form="formItemData" :formSets="formSets" />
       </el-col>
     </el-row>
     <previewModel ref="previewModel" :data="data" />
@@ -49,6 +51,11 @@ export default {
       com: {},
       data: [],
       formItemData: {},
+      formSets: {
+        labelPosition: 'left',
+        labelWidth: 80,
+        formSize: 'small'
+      }
     };
   },
   methods: {
@@ -101,6 +108,9 @@ export default {
     },
     previewView() {
       this.$refs.previewModel.isShowPreviewModel = true
+    },
+    setTableHeadItem(data) {
+      this.formItemData = data
     }
   },
 };

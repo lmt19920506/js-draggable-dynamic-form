@@ -1,6 +1,10 @@
+// 导入样式
+// import './style/var.scss'
+
 import FormDesign from './formDesign/index.vue'
 import FormView from './showForm/formView.vue'
 import FormItem from './formItem/index.vue'
+
 
 // 以数组得结构保存组件，便于遍历
 const components = [FormDesign, FormView, FormItem]

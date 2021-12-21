@@ -76,9 +76,14 @@ export default {
   font-size: 14px;
   background: #f1f2fd;
   &:hover {
-    border: 1px dashed #579ff8;
-    color: #579ff8;
-    transition: 0.3s;
+    // border: 1px dashed #579ff8;
+    // color: #579ff8;
+    // transition: 0.3s;
+    color: #13c2c2;
+    border: 1px solid  #13c2c2;
+    position: relative;
+    // z-index: 1;
+    box-shadow: 0 2px 6px #13c2c2;
   }
 }
 </style>
