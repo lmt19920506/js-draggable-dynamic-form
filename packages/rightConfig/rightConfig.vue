@@ -1,8 +1,8 @@
 <template>
-  <el-card>
+  <el-card class="rightConfigContainer" style="height: 900px">
     <el-tabs v-model="tabName">
       <el-tab-pane label="字段设置" name="one">
-        <FormItemSet :form="form" />
+        <FormItemSet :formModel="form" />
       </el-tab-pane>
       <el-tab-pane label="校验设置" name="two"></el-tab-pane>
       <el-tab-pane label="表单设置" name="three">
@@ -39,4 +39,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+</style>

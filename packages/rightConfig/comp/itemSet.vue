@@ -18,7 +18,7 @@
           :min="1"
         ></el-input-number>
       </el-form-item>
-      <el-form-item label="默认值:">
+      <el-form-item label="默认值:" v-if="!['TableForm'].includes(form.type)">
         <el-input
           v-model="form.defaultValue"
           v-if="['Input'].includes(form.type)"
@@ -73,7 +73,7 @@
           <el-table-column label="操作" width="50" align="center">
             <template slot-scope="scope">
               <i
-                class="el-icon-delete"
+                class="el-icon-delete danger"
                 title="删除"
                 @click="dele(scope.row, scope.$index)"
               ></i>
@@ -93,10 +93,15 @@
 <script>
 export default {
   props: {
-    form: {
+    formModel: {
       type: Object,
       default: () => {},
     },
+  },
+  data() {
+    return {
+      form: {}
+    }
   },
   methods: {
     changeMultiple(data) {
@@ -114,6 +119,15 @@ export default {
       this.form.deleteOption(index);
     },
   },
+  watch: {
+    formModel: {
+      handler: function(newVal) {
+        console.log('watch---form', newVal)
+        this.form = newVal
+      },
+      deep: true
+    }
+  }
 };
 </script>
 

@@ -17,6 +17,7 @@
           @deleCom="deleCom"
           @selectCom="setcom"
           @previewView="previewView"
+          @getJson="getJson"
           @setTableHeadItem="setTableHeadItem"
         />
       </el-col>
@@ -24,7 +25,8 @@
         <rightConfig :form="formItemData" :formSets="formSets" />
       </el-col>
     </el-row>
-    <previewModel ref="previewModel" :data="data" />
+    <previewModel ref="previewModel" :data="data" :formSets="formSets" :dialogKey="dialogKey" />
+    <jsonModel ref="jsonModel" />
   </div>
 </template>
 
@@ -32,14 +34,16 @@
 import collapseItem from "../collapseItem/index";
 import centerForm from "../centerForm/index";
 import rightConfig from '../rightConfig/rightConfig'
-import previewModel from '../showForm/previewModel'
+import previewModel from '../operationModel/previewModel'
+import jsonModel from '../operationModel/jsonModel'
 export default {
   name: "FormDesign",
   components: {
     collapseItem,
     centerForm,
     rightConfig,
-    previewModel
+    previewModel,
+    jsonModel
   },
   data() {
     return {
@@ -55,7 +59,8 @@ export default {
         labelPosition: 'left',
         labelWidth: 80,
         formSize: 'small'
-      }
+      },
+      dialogKey: new Date().getTime()
     };
   },
   methods: {
@@ -107,7 +112,19 @@ export default {
       this.data.splice(index, 1)
     },
     previewView() {
+      console.log('previewModel---ref---', this.$refs.previewModel)
+      this.dialogKey = new Date().getTime()
       this.$refs.previewModel.isShowPreviewModel = true
+    },
+    getJson() {
+      const dynamicFormData = {
+        list: this.data,
+        config: this.formSets
+      }
+
+      console.log('data---', dynamicFormData)
+      this.$refs.jsonModel.jsonData = dynamicFormData
+      this.$refs.jsonModel.isShowDialog = true
     },
     setTableHeadItem(data) {
       this.formItemData = data

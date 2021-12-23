@@ -3,7 +3,6 @@
     <el-form
       :model="dynamicValidateForm"
       ref="dynamicValidateForm"
-      label-width="0"
       size="mini"
     >
       <el-table
@@ -85,6 +84,7 @@ export default {
       });
     },
     addTableData() {
+      console.log('table attr---', this.data)
       const tableColumnData = {};
       this.data.column.forEach((item) => {
         if (
@@ -99,9 +99,11 @@ export default {
         ...tableColumnData,
         key: Date.now(),
       });
+      this.data.tableData = this.dynamicValidateForm.domains
     },
     dele(index) {
       this.dynamicValidateForm.domains.splice(index, 1)
+      this.data.tableData.splice(index, 1)
     }
   },
   mounted() {

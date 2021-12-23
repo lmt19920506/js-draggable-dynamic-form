@@ -16,6 +16,12 @@
       <el-button
         style="float: right; padding: 3px 0; margin-left: 5px"
         type="text"
+        @click="getJson"
+        >获取json</el-button
+      >
+      <el-button
+        style="float: right; padding: 3px 0; margin-left: 5px"
+        type="text"
         >下载源码</el-button
       >
     </div>
@@ -209,6 +215,9 @@ export default {
     previewView() {
       this.$emit("previewView");
     },
+    getJson() {
+      this.$emit('getJson')
+    }
   },
   watch: {
     formItemData(newVal) {

@@ -18,14 +18,13 @@ import MCheckbox from "./itemData/checkbox.js";
 import MTableForm from './itemData/tableForm'
 export default {
   data() {
-    return {
-      data: [
+    this.data = [
         { type: "input", name: "文本框" },
         { type: "Select", name: "下拉框" },
         { type: "Checkbox", name: "多选" },
         { type: "TableForm", name: "表格" }
       ]
-    };
+    return {};
   },
   methods: {
     dragstart(e, data) {
@@ -61,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 .collapseContainer {
   position: relative;
-  min-height: 700px;
+  min-height: 900px;
 }
 .collapse_item {
   box-sizing: border-box;

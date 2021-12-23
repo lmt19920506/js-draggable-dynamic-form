@@ -17,6 +17,8 @@ export default class MTableForm extends assembly{
 
     // 表格的校验在内部的组件中
     this.rules = []
+    // 表格数据
+    this.tableData = []
     // 表单表头
     this.column = [new MInput()]
     // { key: 'name', type: 'input',label: '名称', rules:[{ required: true, message: '名称不能为空', trigger: 'change'}] },
