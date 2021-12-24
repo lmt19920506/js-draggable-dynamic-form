@@ -15,13 +15,17 @@
 import MInput from "./itemData/input";
 import MSelect from "./itemData/select";
 import MCheckbox from "./itemData/checkbox.js";
+import MRadio from './itemData/radio'
 import MTableForm from './itemData/tableForm'
+import MDatePicker from './itemData/datePicker'
 export default {
   data() {
     this.data = [
         { type: "input", name: "文本框" },
         { type: "Select", name: "下拉框" },
         { type: "Checkbox", name: "多选" },
+        { type: 'Radio', name: '单选' },
+        { type: 'DatePicker', name: '日期选择器' },
         { type: "TableForm", name: "表格" }
       ]
     return {};
@@ -48,6 +52,10 @@ export default {
         obj = new MSelect()
       } else if (type === 'Checkbox') {
         obj = new MCheckbox()
+      } else if (type === 'Radio') {
+        obj = new MRadio
+      } else if (type === 'DatePicker') {
+        obj = new MDatePicker()
       } else if (type === 'TableForm') {
         obj = new MTableForm()
       }

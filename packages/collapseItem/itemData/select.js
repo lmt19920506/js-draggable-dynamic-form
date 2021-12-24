@@ -11,9 +11,9 @@ export default class MSelect extends assembly{
     key = "Select" + '_' + new Date().getTime()
   ) {
     super(type, name, model, defaultValue, col, key)
-    this.showFrom = ['name', 'col', 'key','multiple','collapsetags','placeholder',
-      'clearable','disabled','filterable','allowcreate','datatype','option','url'
-    ]
+    // this.showFrom = ['name', 'col', 'key','multiple','collapsetags','placeholder',
+    //   'clearable','disabled','filterable','allowcreate','datatype','option','url'
+    // ]
     this.multiple = false
     this.collapsetags = false
     this.disabled = false

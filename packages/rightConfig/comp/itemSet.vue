@@ -8,16 +8,20 @@
       <el-form-item label="name:">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
+
       <el-form-item label="model值">
         <el-input v-model="form.model"></el-input>
       </el-form-item>
+
       <el-form-item label="栅格数">
         <el-input-number
           v-model.number="form.col"
+          style="width: 100%"
           :max="24"
           :min="1"
         ></el-input-number>
       </el-form-item>
+
       <el-form-item label="默认值:" v-if="!['TableForm'].includes(form.type)">
         <el-input
           v-model="form.defaultValue"
@@ -25,7 +29,7 @@
         ></el-input>
         <el-select
           style="width: 100%"
-          v-if="['Select'].includes(form.type)"
+          v-if="['Select', 'Radio'].includes(form.type)"
           v-model="form.defaultValue"
           :multiple="form.multiple"
         >
@@ -50,7 +54,18 @@
           >
         </el-checkbox-group>
       </el-form-item>
-      <div v-if="['Select', 'Checkbox'].includes(form.type)">
+
+      <el-form-item v-if="['Input', 'Select', 'CheckBox'].includes(form.type)" label="禁用">
+        <el-switch v-model="form.disabled"></el-switch>
+      </el-form-item>
+
+      <el-form-item label="日期类型" v-if="form.type === 'DatePicker'">
+        <el-select v-model="form.showType">
+          <el-option v-for="item in form.typeSource" :key="item" :label="item" :value="item"></el-option>
+        </el-select>
+      </el-form-item>
+
+      <div v-if="['Select', 'Checkbox', 'Radio'].includes(form.type)">
         <el-table :data="form.option" border size="mini">
           <el-table-column label="key">
             <template slot-scope="scope">
