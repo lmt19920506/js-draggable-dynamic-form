@@ -1,29 +1,31 @@
 <template>
   <el-card class="centerFormContainer">
-    <div slot="header">
-      <span style="float: left">表单设计</span>
-      <el-button
-        style="float: right; padding: 3px 0; margin-left: 5px"
-        type="text"
-        >保存</el-button
-      >
-      <el-button
-        style="float: right; padding: 3px 0; margin-left: 5px"
-        type="text"
-        @click="previewView"
-        >预览</el-button
-      >
-      <el-button
-        style="float: right; padding: 3px 0; margin-left: 5px"
-        type="text"
-        @click="getJson"
-        >获取json</el-button
-      >
-      <el-button
-        style="float: right; padding: 3px 0; margin-left: 5px"
-        type="text"
-        >下载源码</el-button
-      >
+    <div slot="header" class="header">
+      <span class="formDesignText">表单设计</span>
+      <el-row>
+        <el-button
+          style="float: right; padding: 3px 0; margin-left: 5px"
+          type="text"
+          >保存</el-button
+        >
+        <el-button
+          style="float: right; padding: 3px 0; margin-left: 5px"
+          type="text"
+          @click="previewView"
+          >预览</el-button
+        >
+        <el-button
+          style="float: right; padding: 3px 0; margin-left: 5px"
+          type="text"
+          @click="getJson"
+          >获取json</el-button
+        >
+        <el-button
+          style="float: right; padding: 3px 0; margin-left: 5px"
+          type="text"
+          >下载源码</el-button
+        >
+      </el-row>
     </div>
     <div class="elcardzz" @dragover.prevent="dragover" @drop="dropFun"></div>
     <div class="formsContent">
@@ -69,7 +71,10 @@
               >
                 <FormItem :element="item" :formModel="formModel" />
               </el-form-item>
-              <el-form-item :label="item.name + ':'" v-if="item.type === 'TableForm'">
+              <el-form-item
+                :label="item.name + ':'"
+                v-if="item.type === 'TableForm'"
+              >
                 <TableForm
                   :formItemData="formItemData"
                   :data="item"
@@ -216,8 +221,8 @@ export default {
       this.$emit("previewView");
     },
     getJson() {
-      this.$emit('getJson')
-    }
+      this.$emit("getJson");
+    },
   },
   watch: {
     formItemData(newVal) {
@@ -234,6 +239,13 @@ export default {
   position: relative;
   min-height: 900px;
   overflow-y: auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  .formDesignText {
+    font-weight: 600;
+  }
 }
 .elcardzz {
   position: absolute;

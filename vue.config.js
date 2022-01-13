@@ -23,11 +23,12 @@ module.exports = {
       }
     }
   },
-  chainWebpack: config => {
-    config.plugin('html-index').tap(args => {
-      // 配置页面标题
-      args[0].title = 'js-draggable-dynamic-form'
-      return args
-    })
-  }
+  // chainWebpack: config => {
+  //   config.plugin('html-index').tap(args => {
+  //     console.log('args---', args)
+  //     // 配置页面标题
+  //     args[0].title = 'js-draggable-dynamic-form'
+  //     return args
+  //   })
+  // }
 }

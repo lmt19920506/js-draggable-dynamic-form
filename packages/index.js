@@ -1,10 +1,16 @@
 // 导入样式
-// import './style/var.scss'
+import Vue from 'vue'
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+import '../examples/style/var.scss'
+Vue.use(ElementUI);
 
 import FormDesign from './formDesign/index.vue'
 import FormView from './showForm/formView.vue'
 import FormItem from './formItem/index.vue'
 
+// 引入iconfont
+import '../examples/assets/iconfont/iconfont.css'
 
 // 以数组得结构保存组件，便于遍历
 const components = [FormDesign, FormView, FormItem]

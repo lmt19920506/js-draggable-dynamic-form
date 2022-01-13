@@ -1,16 +1,19 @@
 {
-  "name": "self-dynamic-form",
-  "version": "0.1.0",
-  "private": true,
+  "name": "js-draggable-dynamic-form",
+  "version": "0.1.6",
+  "private": false,
+  "main": "lib/js-draggable-dynamic-form.umd.min.js",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name js-draggable-dynamic-form --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.15.6",
     "vue": "^2.6.11",
     "vue-codemirror-lite": "^1.0.4",
+    "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },

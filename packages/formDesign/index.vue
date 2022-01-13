@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-row :gutter="10">
-      <el-col :span="6">
+      <el-col :span="5">
         <collapseItem @setdrag="setdrag" @reset="reset" @setcom="setcom" />
       </el-col>
-      <el-col :span="12">
+      <el-col :span="13">
         <centerForm
           :formData="data"
           :formItemData="formItemData"

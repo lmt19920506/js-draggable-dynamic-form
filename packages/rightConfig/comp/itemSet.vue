@@ -5,31 +5,31 @@
       <!-- 下拉框 -->
       <!-- 多选 -->
       <!-- 表格 -->
-      <el-form-item label="name:">
+      <el-form-item v-if="form && form.name" label="name:">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
 
-      <el-form-item label="model值">
+      <el-form-item v-if="form && form.model" label="model值">
         <el-input v-model="form.model"></el-input>
       </el-form-item>
 
-      <el-form-item label="栅格数">
+      <el-form-item v-if="form && form.col" label="栅格数">
         <el-input-number
           v-model.number="form.col"
-          style="width: 100%"
+          class="w-100"
           :max="24"
           :min="1"
         ></el-input-number>
       </el-form-item>
 
-      <el-form-item label="默认值:" v-if="!['TableForm'].includes(form.type)">
+      <el-form-item label="默认值:" v-if="!['TableForm', 'Upload', 'Editor'].includes(form.type) && form && form.defaultValue">
         <el-input
           v-model="form.defaultValue"
           v-if="['Input'].includes(form.type)"
         ></el-input>
         <el-select
-          style="width: 100%"
-          v-if="['Select', 'Radio'].includes(form.type)"
+          class="w-100"
+          v-if="['Select', 'Radio', 'Switch'].includes(form.type)"
           v-model="form.defaultValue"
           :multiple="form.multiple"
         >
@@ -55,16 +55,82 @@
         </el-checkbox-group>
       </el-form-item>
 
-      <el-form-item v-if="['Input', 'Select', 'CheckBox'].includes(form.type)" label="禁用">
+      <el-form-item
+        v-if="['Input', 'Select', 'CheckBox'].includes(form.type)"
+        label="禁用"
+      >
         <el-switch v-model="form.disabled"></el-switch>
       </el-form-item>
 
       <el-form-item label="日期类型" v-if="form.type === 'DatePicker'">
         <el-select v-model="form.showType">
-          <el-option v-for="item in form.typeSource" :key="item" :label="item" :value="item"></el-option>
+          <el-option
+            v-for="item in form.typeSource"
+            :key="item"
+            :label="item"
+            :value="item"
+          ></el-option>
         </el-select>
       </el-form-item>
 
+      <el-row v-if="['Switch'].includes(form.type)">
+        <el-form-item label="激活颜色">
+          <el-color-picker v-model="formModel.activeColor"></el-color-picker>
+        </el-form-item>
+        <el-form-item label="停用颜色">
+          <el-color-picker v-model="formModel.inactiveColor"></el-color-picker>
+        </el-form-item>
+      </el-row>
+
+      <el-row v-if="['Slider'].includes(form.type)">
+        <el-form-item label="最大值">
+          <el-input-number
+            :min="0"
+            class="w-100"
+            v-model="form.max"
+          ></el-input-number>
+        </el-form-item>
+        <el-form-item label="最小值">
+          <el-input-number
+            class="w-100"
+            v-model="form.min"
+          ></el-input-number>
+        </el-form-item>
+      </el-row>
+      <!-- upload -->
+      <el-row v-if="form.type === 'Upload'">
+        <el-form-item label="上传地址">
+          <el-input v-model="form.action"></el-input>
+        </el-form-item>
+        <el-form-item label="上传数量">
+          <el-input-number :min="1" v-model="form.limit" style="width: 100%"></el-input-number>
+        </el-form-item>
+        <el-form-item label="文件name">
+          <el-input v-model="form.uploadName"></el-input>
+        </el-form-item>
+        <!-- <el-form-item label="额外参数(json格式)">
+          <el-input type="textarea" v-model="form.data"></el-input>
+        </el-form-item> -->
+        <el-form-item label="操作属性">
+          <el-checkbox v-model="form.hidden">隐藏</el-checkbox>
+          <el-checkbox v-model="form.disabled">禁用</el-checkbox>
+          <el-checkbox v-model="form.multiple">多选</el-checkbox>
+          <el-checkbox v-model="form.drag">允许拖拽</el-checkbox>
+        </el-form-item>
+      </el-row>
+
+      <!-- 富文本 -->
+      <el-row v-if="form.type === 'Editor'">
+        <!-- <el-form-item label="默认值">
+          <el-input type="textarea" v-model="form.defaultValue"></el-input>
+        </el-form-item> -->
+        <el-form-item label="高度">
+          <el-input-number class="w-100" :min="100" v-model="form.options.height"></el-input-number>
+        </el-form-item>
+        <el-form-item label="占位内容">
+          <el-input v-model="form.options.placeholder"></el-input>
+        </el-form-item>
+      </el-row>
       <div v-if="['Select', 'Checkbox', 'Radio'].includes(form.type)">
         <el-table :data="form.option" border size="mini">
           <el-table-column label="key">
@@ -115,8 +181,8 @@ export default {
   },
   data() {
     return {
-      form: {}
-    }
+      form: {},
+    };
   },
   methods: {
     changeMultiple(data) {
@@ -136,13 +202,13 @@ export default {
   },
   watch: {
     formModel: {
-      handler: function(newVal) {
-        console.log('watch---form', newVal)
-        this.form = newVal
+      handler: function (newVal) {
+        console.log("watch---form", newVal);
+        this.form = newVal;
       },
-      deep: true
-    }
-  }
+      deep: true,
+    },
+  },
 };
 </script>
 

@@ -45,6 +45,14 @@
         >{{ item.label }}</el-radio
       >
     </el-radio-group>
+    <el-switch
+      v-if="element.type === 'Switch'"
+      v-model="element.defaultValue"
+      :active-color="element.activeColor"
+      :inactive-color="element.inactiveColor"
+    >
+    </el-switch>
+
     <el-date-picker
       v-if="element.type === 'DatePicker'"
       v-model="element.defaultValue"
@@ -52,10 +60,22 @@
       :value-format="element.valueFormat"
       :clearable="element.clearable"
     ></el-date-picker>
+
+    <el-slider
+      v-if="element.type === 'Slider'"
+      v-model="element.defaultValue"
+      :min="element.min"
+      :max="element.max"
+    ></el-slider>
+
+    <!-- <upload :element="element"></upload> -->
+    <component :is="componentItem" :element="element" @change="editorChange"></component>
   </div>
 </template>
 
 <script>
+import Upload from './upload'
+import ComponentObj from '../core/component_use'
 export default {
   name: "FormItem",
   props: {
@@ -68,6 +88,20 @@ export default {
       default: () => {},
     },
   },
+  components: {
+    Upload
+  },
+  computed: {
+    componentItem() {
+      return ComponentObj[this.element.type]
+    }
+  },
+  methods: {
+    editorChange(data) {
+      console.log('editor change---', data)
+      this.element.defaultValue = data
+    }
+  }
 };
 </script>
 
