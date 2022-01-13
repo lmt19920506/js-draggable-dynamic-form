@@ -24,6 +24,7 @@ export default {
   watch: {
     isShowDialog(val) {
       if (val) {
+        // console.log('aaa')
         this.editorJson = JSON.stringify(this.jsonData, null, 2)
       }
     }
