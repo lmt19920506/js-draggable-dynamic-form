@@ -133,6 +133,7 @@ export default {
   },
   methods: {
     dragstart(e) {
+      // test
       e.dataTransfer.setData("one", "aaa");
     },
     dragover(e) {
